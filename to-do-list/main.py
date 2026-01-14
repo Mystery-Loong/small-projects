@@ -1,5 +1,9 @@
 # to-do-list project
 # function: add element, del element, view tasks, save to file 
+
+from pathlib import Path
+
+
 def add_list(matter,list):
     """add element to list"""
     list.append(matter)
@@ -19,8 +23,13 @@ def print_list(list):
 
 def save_list(list):
     """save list to file"""
+    to_do_string = '\n'.join(list)
+    print(to_do_string)
+    path.write_text(to_do_string)
 
-to_do_list = ["go to school", "go home", "working"]
+path = Path('/home/loong/python/small-projects/to-do-list/to-do-list.txt')
+to_do_string = path.read_text()
+to_do_list = to_do_string.splitlines()
 n = ""
 print("Welcome to to-do list")
 while n != "q":
@@ -40,5 +49,7 @@ while n != "q":
         del_list(matter_number, to_do_list)
     elif n == "v":
         print_list(to_do_list)
+    elif n == "s":
+        save_list(to_do_list)
     else:
         n = "q"
