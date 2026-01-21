@@ -1,5 +1,1 @@
-go to school
-go home
-working
-go home
-go party
+{'id': 0, 'description': 'go home', 'completed': False}{'id': 1, 'description': 'go school', 'completed': False}

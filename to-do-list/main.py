@@ -12,14 +12,19 @@ def add_list(matter,list):
 def del_list(delete_number, list):
     """del element to list"""
     n = int(delete_number)
-    del list[n]
-    print_list(list)
+    try:
+        del list[n]
+    except IndexError:
+        print("There is not such number!")
+        pass
+    else:
+        print_list(list)
 
 def print_list(list):
     """print the list"""
     print("The To-do list:")
     for index, value in enumerate(list):
-        print(f"\t {index}, {value}")
+        print(f"\t{index}, {value}")
 
 def save_list(list):
     """save list to file"""
@@ -28,8 +33,13 @@ def save_list(list):
     path.write_text(to_do_string)
 
 path = Path('/home/loong/python/small-projects/to-do-list/to-do-list.txt')
-to_do_string = path.read_text()
-to_do_list = to_do_string.splitlines()
+try:
+    to_do_string = path.read_text()
+except FileNotFoundError:
+    to_do_list = []
+    pass
+else:
+    to_do_list = to_do_string.splitlines()
 n = ""
 print("Welcome to to-do list")
 while n != "q":
@@ -37,7 +47,7 @@ while n != "q":
     print("\t Delete the to-do matter please input: d")
     print("\t View the to-do list please input: v")
     print("\t Save the to-do list please input: s")
-    print("\t Close the program please input: q or any others")
+    print("\t Close the program please input: q or any others input")
     n = input("\nPlease input you choice: ")
 
     if n == "a":
